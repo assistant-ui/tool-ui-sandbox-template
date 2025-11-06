@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
-import { DemoToolUI } from "@/components/demo-tool-ui";
+import DemoToolUI from "@/components/demo-tool-ui";
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
-import { AssistantChatTransport, useChatRuntime } from "@assistant-ui/react-ai-sdk";
-
+import {
+  AssistantChatTransport,
+  useChatRuntime,
+} from "@assistant-ui/react-ai-sdk";
 
 export default function Home() {
   const runtime = useChatRuntime({
@@ -13,8 +15,16 @@ export default function Home() {
   });
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <DemoToolUI.unstable_tool.render />
+      <DemoToolUI.unstable_tool.render
+        type="tool-call"
+        toolCallId="test"
+        toolName="demo_tool"
+        args={{}}
+        argsText="{}"
+        status={{ type: "complete" }}
+        addResult={() => {}}
+        resume={() => {}}
+      />
     </AssistantRuntimeProvider>
-  )
-  // return <Assistant />;
+  );
 }
